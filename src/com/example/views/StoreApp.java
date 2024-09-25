@@ -6,7 +6,7 @@ import java.util.ArrayList;
  *
  * @author rushav
  */
-public class StoreApp{
+public class StoreApp extends SmartphoneModel{
     private ArrayList<SmartphoneModel> dataList;
     
     public static void main(String[] args) {
