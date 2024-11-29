@@ -56,7 +56,7 @@ public class HamroQueue {
         
         Map<Integer, String> nap = new HashMap();
         map.put(1,"Suman");
-        map.put(2,"Rushav");
+        map.put(2,"Ru");
         
     }
     
