@@ -33,7 +33,7 @@ public class ValidationUtil extends StudentModel{
     }
     
     public static boolean isNumValid(String num) {
-        return num.matches("^98\\\\d{8}$");
+        return num.matches("^98\\d{8}$");
     }
     
     public static boolean isAgeValid(String age) {

@@ -214,8 +214,18 @@ public class CollegeApp extends javax.swing.JFrame {
         modules.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AI", "Computing", "Multi Media", "BBA" }));
 
         updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         addBtn.setText("Add");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -666,8 +676,107 @@ public class CollegeApp extends javax.swing.JFrame {
         }
 
         StudentModel student = new StudentModel(Integer.parseInt(lmuIdText), nameText, module, numText);
-        System.out.println("Student Added: " + student.getName());
+        System.out.println("Student Added: " + student.getName() + "\n" +
+                           "Lmu Id: " + student.getLmuId()+ "\n" +
+                           "Contact No.: " + student.getContact() + "\n" +
+                           "From Module: " + student.getModule());
+        
+        studentList.add(student);
+        
+        lmuId.setText("");
+        collegeId.setText("");
+        name.setText("");
+        num.setText("");
     }//GEN-LAST:event_addBtnActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        String lmuIdText = lmuId.getText().trim();
+        String collegeIdText = collegeId.getText().trim();
+        String nameText = name.getText().trim();
+        String numText = num.getText().trim();
+        String module = (String) modules.getSelectedItem();        
+        if (!ValidationUtil.isLmuIdValid(lmuIdText)) {
+            System.out.println("Please Enter a Valid LMU ID");
+            return; 
+        }
+
+        if (!ValidationUtil.isCollegeIdValid(collegeIdText)) {
+            System.out.println("Please Enter a Valid College ID");
+            return;
+        }
+
+        if (!ValidationUtil.isNameValid(nameText)) {
+            System.out.println("Please Enter a Valid Name");
+            return;
+        }
+
+        if (!ValidationUtil.isNumValid(numText)) {
+            System.out.println("Please Enter a Valid Number");
+            return;
+        }
+
+        if (ValidationUtil.isModuleEmpty(module)) {
+            System.out.println("Please Choose a Module");
+            return;
+        }
+        
+        StudentModel exists = null;
+        
+        for(int i = 0; i < studentList.size(); i++){
+            StudentModel stu = studentList.get(i);
+            if(stu.getLmuId() == Integer.parseInt(lmuIdText)){
+                exists = stu;
+            }
+        }
+        
+        if(exists == null){
+            System.out.println("No Student Found In List");
+            return;
+        }
+        
+        exists.setLmuId(Integer.parseInt(lmuIdText));
+        exists.setName(nameText);
+        exists.setContact(numText);
+        exists.setModule(module);
+        
+        System.out.println("Student Updated");
+        
+        lmuId.setText("");
+        collegeId.setText("");
+        name.setText("");
+        num.setText("");
+        
+        
+    }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        String lmuIdText = lmuId.getText().trim();
+        StudentModel exists = null;
+        
+        for(int i = 0; i < studentList.size(); i++){
+            StudentModel stu = studentList.get(i);
+            if(stu.getLmuId() == Integer.parseInt(lmuIdText)){
+                exists = stu;
+            }
+        }
+        
+        if(exists == null){
+            System.out.println("No Student Found In List");
+            return;
+        }
+        
+              
+        studentList.remove(exists);
+        System.out.println("Student Removed");
+        
+        lmuId.setText("");
+        collegeId.setText("");
+        name.setText("");
+        num.setText("");
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
     /**
      * @param args the command line arguments
