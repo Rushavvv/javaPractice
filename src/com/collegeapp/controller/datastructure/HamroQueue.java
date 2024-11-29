@@ -5,6 +5,7 @@
 package com.collegeapp.controller.datastructure;
 import com.collegeapp.model.StudentModel;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  *
@@ -48,6 +49,15 @@ public class HamroQueue {
     }
     
     
-    
+    public void test(){
+        Set set = new HashSet();
+        set.add(123);
+        set.add("Rushav");
+        
+        Map<Integer, String> nap = new HashMap();
+        map.put(1,"Suman");
+        map.put(2,"Suman");
+
+    }
     
 }
